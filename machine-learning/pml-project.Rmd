@@ -1,6 +1,6 @@
 ---
 title: "PML Project"
-author: "Hernan"
+author: "Hernan Soulages"
 date: "December 11, 2016"
 output: html_document
 ---
