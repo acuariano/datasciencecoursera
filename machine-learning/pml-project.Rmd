@@ -1,0 +1,157 @@
+---
+title: "PML Project"
+author: "Hernan"
+date: "December 9, 2016"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+In this project we are going to apply Machine Learning techniques to a dataset of measurements taken while doing different kinds of exercises.
+
+The steps for our analysis are: 
+1. Preparing the datasets, making sure we bad data correctly.
+2. Selecting the features.
+3. Try out different models and select a good one or combination.
+4. Predict the testing set.
+
+## Data
+*Note: the following paragraph is taken from the project definition.*
+
+Using devices such as *Jawbone Up*, *Nike FuelBand*, and *Fitbit* it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify *how much* of a particular activity they do, but they rarely quantify how *well they do it*.
+
+We are using the dataset from http://groupware.les.inf.puc-rio.br/har that was generously made public (under Creative Commons) by the authors (cited below).
+
+**Six young health participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashions: exactly according to the specification (Class A), throwing the elbows to the front (Class B), lifting the dumbbell only halfway (Class C), lowering the dumbbell only halfway (Class D) and throwing the hips to the front (Class E).**
+
+# Preparing the datasets
+```{r cache = TRUE}
+#download.file('https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv', 'pml-training.csv')
+#download.file('https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv', 'pml-testing.csv')
+
+# load datasets converting bad data to NA
+training <- read.csv('pml-training.csv', na.strings = c("NA", "", "#DIV/0!"))
+testing <- read.csv('pml-testing.csv', na.strings = c("NA", "", "#DIV/0!"))
+```
+
+### Remove bad data
+Looking at the data, we see that there's a lot of NAs. 
+
+```{r}
+sum(is.na(training))/prod(dim(training))
+table(colSums(is.na(training)))
+```
+
+We see that a lot of the columns have at least 19216 rows with NA (about 97%). We can safely remove those columns from are sets since they will give us little predictive power. Notice that the remaining 60 columns have no NAs, so we don't need to impute values. 
+
+```{r}
+selectedColumns = colSums(is.na(training))<19216
+training <- training[,selectedColumns]
+```
+
+We can also discard the first 7 columns, which contain only information about the data point and not actual measurements. We may get some information from the username, but it may over fit for predicting other users not in the training set.
+
+```{r}
+training <- training[, -c(1:7)]
+testing <- testing[, c(names(training[,-53]), "problem_id")]
+```
+
+Now that we discarded variables based on NAs and meaning, we can check using **nearZeroVar** function if we have any other variable that doesn't add much information to our models.
+
+```{r warning=FALSE}
+#load libraries to use
+library(caret)
+library(randomForest)
+#check for near zero variance features
+nearZeroVar(training)
+```
+
+There's no feature left with near zero variance.
+
+## Split training dataset
+We need to split the training set into a sub-training set and a cross-validation set, so that we can check the models using the cross-validation set. We could use more complex techniques for model selection, like K-fold cross-validation or leave one out, but since we have a large dataset (19622 data points), we can do a simple split. We'll use *p = 0.6* as suggested in the lesson. 
+
+To make our results reproducible, we well set the global seed to 19895.
+
+```{r}
+set.seed(19895)
+# generate partitions for training and cross-validation
+inTrain <- createDataPartition(training$classe, p = 0.6, list=FALSE)
+trainingSub <- training[inTrain,]
+cvSub <- training[-inTrain,]
+```
+
+# Model testing
+In this section we are going to try different models to see which one produces more accurate predictions for our problem. In the code below we are skipping calls to system.time for clarity, but we timed the training for each model and added as a comment at the end of each call.
+
+We'll start with a classification tree which allows for better interpretation of the classification.
+```{r warning=FALSE}
+# classification tree
+modTree <- train(classe ~ ., method="rpart", data=trainingSub) #20 seconds
+library(rattle)
+fancyRpartPlot(modTree$finalModel)
+```
+
+By looking at the tree we can immediately notice that it does not contemplate class D, which is wrong as we can see from using the table function:
+
+```{r}
+table(trainingSub$classe)
+```
+
+Let's see what we can get from Random Forest, Generalized Boosted Regression Models and Linear Discriminant Analysis.
+
+```{r cache=TRUE, echo=FALSE, warning=FALSE}
+#fit other models
+modRF <- train(classe ~ ., method="rf", data=trainingSub) #4563 seconds
+modGBM <- train(classe ~ ., method="gbm", data=trainingSub) #2049 seconds
+modLDA <- train(classe ~ ., method="lda", data=trainingSub) #9 seconds
+```
+
+```{r}
+#predictions
+predTree <- predict(modTree, cvSub)
+predRF <- predict(modRF, cvSub)
+predGBM <- predict(modGBM, cvSub)
+predLDA <- predict(modLDA, cvSub)
+cmTree <- confusionMatrix(predTree, cvSub$classe)
+cmRF <- confusionMatrix(predRF, cvSub$classe)
+cmGBM <- confusionMatrix(predGBM, cvSub$classe)
+cmLDA <- confusionMatrix(predLDA, cvSub$classe)
+accuracies <- data.frame(list(rpart = cmTree$overall[['Accuracy']], rf = cmRF$overall[['Accuracy']], gbm = cmGBM$overall[['Accuracy']], lda = cmLDA$overall[['Accuracy']]))
+accuracies
+```
+ 
+For Random Forest, which took about an hour and 15 minutes to run, we also tried reducing variables. We used the function **impVar** to train a model using only the 10 most predictive variables. The result is a significant reduction in training time (13.5 minutes vs 1 hour, 15 minutes) but at the cost of about 1 percentage point in accuracy. 
+
+```{r}
+ImpMeasure<-data.frame(varImp(modRF)$importance)
+ImpMeasure$Vars<-row.names(ImpMeasure)
+importantVariablesNames10 <- row.names(ImpMeasure[order(-ImpMeasure$Overall),][1:10,])
+importantVariablesNames10 <- c(importantVariablesNames10, "classe") # add 'classe' again for training
+training10MostImportant <- trainingSub[, importantVariablesNames10] # select columns of trainingSub set
+modRF10time <- system.time(modRF10 <- train(classe ~ ., method="rf", data=training10MostImportant))  # 811 seconds using top 10
+predRF10 <- predict(modRF, cvSub)
+cmRF10 <- confusionMatrix(predRF10, cvSub$classe)
+accuracies$rf10 <- cmRF10$overall[['Accuracy']]
+accuracies
+1-accuracies
+table(predict(modRF10, testing) != predict(modRF, testing))
+
+```
+
+We can see that our reduced model still produces good results, with a 98.27 accuracy and the same answer for the *testing* set. The error rate on the other hand is triple the original Random Forest rate but still about half of the second best method, GBM. If we need to do retraining often it may be better to reduce the amount of features. What's "good enough" depends on context.
+
+Our final predictions, based on the original Random Forest model is:
+```{r}
+finalPred <- predict(modRF, testing)
+names(finalPred) <- 1:20
+finalPred
+```
+
+## References
+1. Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
+Read more: http://groupware.les.inf.puc-rio.br/har#weight_lifting_exercises#ixzz4SRId5P4a
