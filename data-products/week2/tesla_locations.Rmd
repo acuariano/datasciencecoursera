@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-The locations in the *locations.txt* file are from the finder at "https://www.tesla.com/findus#/bounds/49.38,-66.94,25.82,-124.39?search=supercharger,store,service,destination%20charger,&name=us". It was easy to extract the latitude and longitude but getting the information for type of location was tricky. For the purpose of this project, I just used a generic text for the popups. It would be nicer to have a list with the address and type of station and make the icons represent the type and the popups show the address.
+The locations in the *locations.txt* file are from the [Tesla finder](https://www.tesla.com/findus#/bounds/49.38,-66.94,25.82,-124.39?search=supercharger,store,service,destination%20charger,&name=us). It was easy to extract the latitude and longitude but getting the information for type of location was tricky. For the purpose of this project, I just used a generic text for the popups. It would be nicer to have a list with the address and type of station and make the icons represent the type and the popups show the address.
 
 ```{r locations, echo=FALSE, warning=FALSE}
 locations <- read.csv('locations.txt')
