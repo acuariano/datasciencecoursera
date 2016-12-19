@@ -36,5 +36,5 @@ df <- rename(df, c("latitude"="lat", "longitude"="lng"))
 df$iconAddress <- sapply(df$location_type, iconURL)
 library(leaflet)
 df %>% leaflet(1024, 768) %>% addTiles() %>% 
-        addMarkers(~lng, ~lat, clusterOptions = markerClusterOptions(maxClusterRadius=30, disableClusteringAtZoom=10), icon = ~ icons( iconUrl = iconAddress, iconWidth = 32, iconHeight = 32), popup = paste("<b>", df$title, "</b><br/><emp>", df$address, "</emp><br/>", df$location_type))
+        addMarkers(~lng, ~lat, clusterOptions = markerClusterOptions(maxClusterRadius=30, disableClusteringAtZoom=10), icon = ~ icons( iconUrl = iconAddress, iconWidth = 32, iconHeight = 32), popup = paste("<b>", df$title, "</b><br/>", df$address, "<br/><i>", df$location_type, "</i>"))
 ```
