@@ -1,0 +1,42 @@
+---
+title: "Solar PV Projections"
+subtitle: "Developing Data Products week 3 assignment"
+author: "Hernan Soulages"
+date: "December 24, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Forecasts
+I've seen lately a lot of forecast predicting that by 2050 some high percent of all energy will be produced with sustainable sources. What I learned so far is that the velocity of expansion follows an [experience curve](http://www.economist.com/node/14298944) and [Swanson's law](https://en.wikipedia.org/wiki/Swanson's_law), which states that photo voltaic modules reduce 20% price for every doubling of cumulative shipped volume. Based on this idea I created a projection of the PV Capacity for the world and for the most important countries (China, USA, Germany and Japan). The chart in the next slide is based on existing data up to 2015 and my own projections from 2016 on. The projections are done using an exponential base calculated using the data.
+
+## Solar PV Capacity trend (log scale)
+```{r pvcapacity, message=FALSE, warning=FALSE}
+pvCapacity <- read.csv("pv_capacity.csv", encoding = "UTF-8")
+library(plotly)
+p <- plot_ly(pvCapacity, x = ~Year, y = ~Capacity, type = "scatter", mode="markers", color = ~Country, size=~Installed) %>%
+layout(yaxis = list(type = "log", title="Capacity (MW)"))
+p
+```
+
+## My projections
+As you can see from the chart, the growth so far in PV capacity has follow an exponential curve and the projections I created using a simple base estimate produces a linear extrapolation in a logarithmic scale. Based on only this ideas, I predict a 1.16 TW of world PV capacity by 2020, which is between 70% and 190% higher than the projections in [Growth of photovoltaics](https://en.wikipedia.org/wiki/Growth_of_photovoltaics). By 2024, world PV capacity will be 4.3 TW, which is almost twice current electricity output (2.3 TW).
+
+## Objections
+The main problem with the previous scenario of high PV usage is storage: solar panels and other renewables, that you can't turn them on or off at whim. They depend on the weather. 
+
+But battery technology is subject to the same experience curves than PV and if the economics makes solar energy 10 times cheaper than natural gas, oil or coal, the economic incentive to change energy source are large. With car that has a battery of 300 miles and average daily use of less than 100 miles, the car has enough energy stored to power the nightly use of most houses. The real problem is providing cheap solar electricity to the car wherever it may be parked during the day. 
+
+## Conclusion
+Considering the [$9,641 per year](http://www.investopedia.com/articles/pf/08/cost-car-ownership.asp) spent on gas for cars and the [$1368 per year](http://www.eia.gov/electricity/sales_revenue_price/pdf/table5_a.pdf) spent on electricity, there's enough money to incentivize PV expansion. I don't believe that we will have half of the world electricity capacity in PV by 2020 and that by 2025 we will have more PV capacity than what we consume. But I'm sure that most forecasts underestimate the velocity of capacity expansion, mostly because 2015 and 2016 had low fossil fuel prices that produced a slowdown in solar projects. But the companies in the market are preparing to roll out the next generation of solar panels that will be cost competitive even with no subsidies and lower prices of fossil fuels. At that point, I believe that the expansion will accelerate and will bring the cost of PV modules and batteries lower at an accelerated rate.
+
+**Welcome to the era of abundant energy.**
+
+#Resources
+- [Wikipedia "Solar Power in the United States"](https://en.wikipedia.org/wiki/Solar_power_in_the_United_States)
+- [Wikipedia "Renewable energy in Germany"](https://en.wikipedia.org/wiki/Renewable_energy_in_Germany)
+- [Wikipedia "Solar Power in Japan"](https://en.wikipedia.org/wiki/Solar_power_in_Japan#PV_growth_of_installations)
+- [Wikipedia "Electric consumption"](https://en.wikipedia.org/wiki/Electric_energy_consumption)
+- [The breakthrough in renewables](https://www.youtube.com/watch?v=mmyrbKBZ6SU)
