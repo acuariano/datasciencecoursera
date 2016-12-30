@@ -22,6 +22,23 @@ h3 {
 emp {
         font-weight: bold;
 }
+.title-slide {
+     background: url(assets/img/panels.jpg);
+}
+.title-slide h1 {
+     color: #ddd!important;
+     text-shadow: 7px 7px #333;
+}
+.title-slide h2 {
+     color: #eee!important;
+     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.title-slide p {
+     color: #eee!important;
+     font-weight:bold!important;
+     font-size:larger;
+     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 </style>
 
 
@@ -34,7 +51,7 @@ To further explore, I focused this project in the same subject. Using the Shiny 
 ## Solar PV Capacity trend (log scale)
 In this chart you can see the growth so far for the highest capacity countries and the world. After 2015 the trend is projected using exponential growth with a base derived by the annual growth up to 2015. Try clicking in the country labels to remove them and compare only my projection to the best one in [Growth of photovoltaic (GTM Research)](https://en.wikipedia.org/wiki/Growth_of_photovoltaics). Even better, use my Shiny application to compare.
 
-<iframe src="demo.html" style="position:absolute;height:500px;width:1000px;"></iframe>
+<iframe src="demo.html" style="position:absolute;height:450px;width:1000px;"></iframe>
 
 --- .reduced
 ## Reasoning and conclusion
