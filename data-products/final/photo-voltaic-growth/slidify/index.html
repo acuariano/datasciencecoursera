@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Solar photo-voltaic capacity growth</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Solar photo-voltaic capacity growth">
+  <meta name="author" content="Hernan Soulages">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Solar photo-voltaic capacity growth</h1>
+    <h2>Developing Data Products final project</h2>
+    <p>Hernan Soulages<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+.reduced p, .reduced li {
+  font-size: 16px;
+}
+h3 {
+        font-size: 20px;
+        color: green;
+        font-weight: bold;
+}
+emp {
+        font-weight: bold;
+}
+</style>
+
+<h2>Purpose</h2>
+
+<p>In my <a href="http://acuariano.github.io/datasciencecoursera/data-products/week3/Solar_PV_Projections.html">week3 project</a> I explained my surprise that energy research entities are estimating photovoltaic capacity growth at a rate a long way lower than what we had in the las 5 or 10 years. </p>
+
+<p>To further explore, I focused this project in the same subject. Using the Shiny application you will be able to see that capacity has grown at 1.46 annual rate in the last 10 years and at a 1.85 annual rate in the las 5 years. Although some desacceleration is expected this year and next, the trend is just taking a pause to accelerate even higher. We will explore this reasoning in the conclusions.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="reduced" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Solar PV Capacity trend (log scale)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In this chart you can see the growth so far for the highest capacity countries and the world. After 2015 the trend is projected using exponential growth with a base derived by the annual growth up to 2015. Try clicking in the country labels to remove them and compare only my projection to the best one in <a href="https://en.wikipedia.org/wiki/Growth_of_photovoltaics">Growth of photovoltaic (GTM Research)</a>. Even better, use my Shiny application to compare.</p>
+
+<iframe src="demo.html" style="position:absolute;height:500px;width:1000px;"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="reduced" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Reasoning and conclusion</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>My guess as to why the energy institutions project such a slow down in installations is a combination of various factors:</p>
+
+<ol>
+<li>Low fossil fuel prices.</li>
+<li>Consumption growth as a ceiling.</li>
+<li>Installed capacity, marginal cost and sinked costs.</li>
+</ol>
+
+<p>The first point is temporary and soon to be rendered irrelevant. Photovoltaic plants in the last year <a href="https://cleantechnica.com/2016/05/02/lowest-solar-price-dubai-800-mw-solar-project/">broke consecutive cost records of 5.8, 2.9 and 2.4 per kWh</a>. This costs are only applicable to some parts of the world, but they are all lower than local cost of grid electricity, something that is applicable to <a href="http://qz.com/871907/2016-was-the-year-solar-panels-finally-became-cheaper-than-fossil-fuels-just-wait-for-2017/">30 countries already and will be growing fast. </a></p>
+
+<p>The second point is, in my view, underestimating the effect that <em>plug-in electric vehicles</em> and home conversions will have in total consumption. A tripling in electricity consumption is easy to imagine (which will reduce other energy sources, like natural gas heating and gasoline.)</p>
+
+<p>The third point is important, but once the cost per kWh of PV electricity goes <em>below the marginal cost</em>, the old gas, coal and oil plants are history.</p>
+
+<p>In conclusion, there&#39;s a good chance that everybody (including me) is underestimating PV growth.</p>
+
+<h3>Welcome to the era of abundant energy.</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h1>Thank You!</h1>
+  </hgroup>
+  <article data-timings="">
+    <h2>Resources</h2>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Growth_of_photovoltaics">Wikipedia &quot;Growth of photovoltaics&quot;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Solar_power_in_the_United_States">Wikipedia &quot;Solar Power in the United States&quot;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Renewable_energy_in_Germany">Wikipedia &quot;Renewable energy in Germany&quot;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Solar_power_in_Japan#PV_growth_of_installations">Wikipedia &quot;Solar Power in Japan&quot;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Electric_energy_consumption">Wikipedia &quot;Electric consumption&quot;</a></li>
+<li><a href="https://www.youtube.com/watch?v=mmyrbKBZ6SU">The breakthrough in renewables</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Solar PV Capacity trend (log scale)'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Reasoning and conclusion'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Thank You!'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

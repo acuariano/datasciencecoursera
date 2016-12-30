@@ -1,0 +1,71 @@
+---
+title: "Solar photo-voltaic capacity growth"
+subtitle: "Developing Data Products final project"
+author: "Hernan Soulages"
+date: "December 30, 2016"
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+<style>
+.reduced p, .reduced li {
+  font-size: 16px;
+}
+h3 {
+        font-size: 20px;
+        color: green;
+        font-weight: bold;
+}
+emp {
+        font-weight: bold;
+}
+</style>
+
+
+## Purpose
+In my [week3 project](http://acuariano.github.io/datasciencecoursera/data-products/week3/Solar_PV_Projections.html) I explained my surprise that energy research entities are estimating photovoltaic capacity growth at a rate a long way lower than what we had in the las 5 or 10 years. 
+
+To further explore, I focused this project in the same subject. Using the Shiny application you will be able to see that capacity has grown at 1.46 annual rate in the last 10 years and at a 1.85 annual rate in the las 5 years. Although some desacceleration is expected this year and next, the trend is just taking a pause to accelerate even higher. We will explore this reasoning in the conclusions.
+
+--- .reduced
+## Solar PV Capacity trend (log scale)
+In this chart you can see the growth so far for the highest capacity countries and the world. After 2015 the trend is projected using exponential growth with a base derived by the annual growth up to 2015. Try clicking in the country labels to remove them and compare only my projection to the best one in [Growth of photovoltaic (GTM Research)](https://en.wikipedia.org/wiki/Growth_of_photovoltaics). Even better, use my Shiny application to compare.
+
+<iframe src="demo.html" style="position:absolute;height:500px;width:1000px;"></iframe>
+
+--- .reduced
+## Reasoning and conclusion
+My guess as to why the energy institutions project such a slow down in installations is a combination of various factors:
+
+1. Low fossil fuel prices.
+1. Consumption growth as a ceiling.
+1. Installed capacity, marginal cost and sinked costs.
+
+The first point is temporary and soon to be rendered irrelevant. Photovoltaic plants in the last year [broke consecutive cost records of 5.8, 2.9 and 2.4 per kWh](https://cleantechnica.com/2016/05/02/lowest-solar-price-dubai-800-mw-solar-project/). This costs are only applicable to some parts of the world, but they are all lower than local cost of grid electricity, something that is applicable to [30 countries already and will be growing fast. ](http://qz.com/871907/2016-was-the-year-solar-panels-finally-became-cheaper-than-fossil-fuels-just-wait-for-2017/)
+
+The second point is, in my view, underestimating the effect that *plug-in electric vehicles* and home conversions will have in total consumption. A tripling in electricity consumption is easy to imagine (which will reduce other energy sources, like natural gas heating and gasoline.)
+
+The third point is important, but once the cost per kWh of PV electricity goes *below the marginal cost*, the old gas, coal and oil plants are history.
+
+In conclusion, there's a good chance that everybody (including me) is underestimating PV growth.
+
+### Welcome to the era of abundant energy.
+
+---
+
+# Thank You!
+## Resources
+- [Wikipedia "Growth of photovoltaics"](https://en.wikipedia.org/wiki/Growth_of_photovoltaics)
+- [Wikipedia "Solar Power in the United States"](https://en.wikipedia.org/wiki/Solar_power_in_the_United_States)
+- [Wikipedia "Renewable energy in Germany"](https://en.wikipedia.org/wiki/Renewable_energy_in_Germany)
+- [Wikipedia "Solar Power in Japan"](https://en.wikipedia.org/wiki/Solar_power_in_Japan#PV_growth_of_installations)
+- [Wikipedia "Electric consumption"](https://en.wikipedia.org/wiki/Electric_energy_consumption)
+- [The breakthrough in renewables](https://www.youtube.com/watch?v=mmyrbKBZ6SU)
+
+
+
+
+
