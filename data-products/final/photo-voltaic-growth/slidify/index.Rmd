@@ -47,7 +47,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Purpose
 In my [week3 project](http://acuariano.github.io/datasciencecoursera/data-products/week3/Solar_PV_Projections.html) I explained my surprise that energy research entities are estimating photovoltaic capacity growth at a rate a long way lower than what we had in the las 5 or 10 years. 
 
-To further explore, I focused this project in the same subject. Using the Shiny application you will be able to see that capacity has grown at 1.46 annual rate in the last 10 years and at a 1.85 annual rate in the las 5 years. Although some desacceleration is expected this year and next, the trend is just taking a pause to accelerate even higher. We will explore this reasoning in the conclusions.
+To further explore, I focused this project in the same subject. Using the Shiny application you will be able to see that capacity has grown at 1.46 annual rate in the last 10 years and at a 1.42 annual rate in the las 5 years. Although some desacceleration is expected this year and next, the trend is just taking a pause to accelerate even higher. We will explore this reasoning in the conclusions. The important point to notice is that most growth lately comes from China, that has big targets for the next few years. And with lower prices there's a good chance the part of the world that hasn't been installing much join in.
 
 --- .reduced
 ## Solar PV Capacity trend (log scale)
