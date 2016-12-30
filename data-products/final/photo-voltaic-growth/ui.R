@@ -29,7 +29,8 @@ shinyUI(fluidPage(
                         em("The gray area are projections (after 2015.)"),
                         br(),br(),
                         "You can access the presentation for this application ", 
-                        a("here", href="https://acuariano.github.io/datasciencecoursera/data-products/final/"),
+                        a("here", href="https://acuariano.github.io/datasciencecoursera/data-products/final/", target="_blank"),
+                        ".",
                         bsTooltip("basesHelp", "The base is calculated with the formula (final-initial)^(1/years). <br/> It uses the selection to calculate the base.",
                                   "right", options = list(container = "body"))
                 ),

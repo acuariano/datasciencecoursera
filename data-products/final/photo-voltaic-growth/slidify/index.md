@@ -1,7 +1,7 @@
 ---
-title: "Solar photo-voltaic capacity growth"
+title: "Photo-voltaic capacity growth"
 subtitle: "Developing Data Products final project"
-author: "Hernan Soulages"
+author: "Hernan Soulages, December 30, 2016"
 date: "December 30, 2016"
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -49,7 +49,7 @@ To further explore, I focused this project in the same subject. Using the Shiny 
 
 --- .reduced
 ## Solar PV Capacity trend (log scale)
-In this chart you can see the growth so far for the highest capacity countries and the world. After 2015 the trend is projected using exponential growth with a base derived by the annual growth up to 2015. Try clicking in the country labels to remove them and compare only my projection to the best one in [Growth of photovoltaic (GTM Research)](https://en.wikipedia.org/wiki/Growth_of_photovoltaics). Even better, use my Shiny application to compare.
+In this chart you can see the growth so far for the highest capacity countries and the world. After 2015 the trend is projected using exponential growth with a base derived by the annual growth up to 2015. Try clicking in the country labels to remove them and compare only my projection to the best one in [Growth of photovoltaic (GTM Research)](https://en.wikipedia.org/wiki/Growth_of_photovoltaics). Even better, use [my Shiny application](https://acuariano.shinyapps.io/photo-voltaic-growth/) to compare.
 
 <iframe src="demo.html" style="position:absolute;height:450px;width:1000px;"></iframe>
 
