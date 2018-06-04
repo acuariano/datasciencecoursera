@@ -15,6 +15,9 @@ I've seen lately a lot of forecast predicting that by 2050 some high percent of 
 ## Solar PV Capacity trend (log scale)
 ```{r pvcapacity, message=FALSE, warning=FALSE}
 pvCapacity <- read.csv("pv_capacity.csv", encoding = "UTF-8")
+#g <- ggplot(pvCapacity, aes(Year, log(Capacity)), colour = Country) + geom_point() +  
+#+    geom_smooth(aes(Year, log(Capacity), colour = Country), method=lm, se=FALSE)
+#g
 library(plotly)
 p <- plot_ly(pvCapacity, x = ~Year, y = ~Capacity, type = "scatter", mode="markers", color = ~Country, size=~Installed) %>%
 layout(yaxis = list(type = "log", title="Capacity (MW)"))
@@ -30,7 +33,7 @@ The main problem with the previous scenario of high PV usage is storage: solar p
 But battery technology is subject to the same experience curves than PV and if the economics makes solar energy 10 times cheaper than natural gas, oil or coal, the economic incentive to change energy source are large. With car that has a battery of 300 miles and average daily use of less than 100 miles, the car has enough energy stored to power the nightly use of most houses. The real problem is providing cheap solar electricity to the car wherever it may be parked during the day. 
 
 ## Conclusion
-Considering the [$9,641 per year](http://www.investopedia.com/articles/pf/08/cost-car-ownership.asp) spent on gas for cars and the [$1368 per year](http://www.eia.gov/electricity/sales_revenue_price/pdf/table5_a.pdf) spent on electricity, there's enough money to incentivize PV expansion. I don't believe that we will have half of the world electricity capacity in PV by 2020 and that by 2025 we will have more PV capacity than what we consume. But I'm sure that most forecasts underestimate the velocity of capacity expansion, mostly because 2015 and 2016 had low fossil fuel prices that produced a slowdown in solar projects. But the companies in the market are preparing to roll out the next generation of solar panels that will be cost competitive even with no subsidies and lower prices of fossil fuels. At that point, I believe that the expansion will accelerate and will bring the cost of PV modules and batteries lower at an accelerated rate.
+Considering the [$1,909 per year](http://www.investopedia.com/articles/pf/08/cost-car-ownership.asp) spent on gas for cars and the [$1,351 per year](http://www.eia.gov/electricity/sales_revenue_price/pdf/table5_a.pdf) spent on electricity, there's enough money to incentivize PV expansion. I don't believe that we will have half of the world electricity capacity in PV by 2020 and that by 2025 we will have more PV capacity than what we consume. But I'm sure that most forecasts underestimate the velocity of capacity expansion, mostly because 2015 and 2016 had low fossil fuel prices that produced a slowdown in solar projects. But the companies in the market are preparing to roll out the next generation of solar panels that will be cost competitive even with no subsidies and lower prices of fossil fuels. At that point, I believe that the expansion will accelerate and will bring the cost of PV modules and batteries lower at an accelerated rate.
 
 **Welcome to the era of abundant energy.**
 
